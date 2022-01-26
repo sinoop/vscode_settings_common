@@ -1,0 +1,74 @@
+{
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": false,
+        "plaintext": true,
+        "markdown": false
+    },
+    "editor.accessibilitySupport": "off",
+    "workbench.colorTheme": "GitHub Dark Default",
+    "markdown-preview-enhanced.previewTheme": "github-light.css",
+    "git.autofetch": true,
+    "gitlens.views.repositories.enabled": true,
+    "python.languageServer": "Pylance",
+    "leetcode.defaultLanguage": "python3",
+    "leetcode.hint.commandShortcut": false,
+    "leetcode.hint.configWebviewMarkdown": false,
+    "terminal.integrated.inheritEnv": false,
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true,
+        "**/.ammonite": true
+    },
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "gitlens.gitCommands.skipConfirmations": [
+        "fetch:command",
+        "stash-push:command",
+        "switch:command",
+        "push:command"
+    ],
+    "multiCommand.commands": [
+        {
+            "command": "multiCommand.cleanupSendersList",
+            "sequence": [
+                { "command": "replacerules.runRuleset", "args": { "rulesetName": "Step 1 - Email Senders Cleanup" } },
+                { "command": "editor.action.selectAll"},
+                { "command": "editor.action.transformToLowercase"},
+                {  "command": "editor.action.sortLinesAscending" },
+                {  "command": "editor.action.removeDuplicateLines" },
+                { "command":  "replacerules.runRule", "args": { "ruleName": "Replace new lines with semicolon" } }
+            ]
+        }
+    ],
+    "replacerules.rules": {
+        "Replace semicolon with newline": {
+            "find": ";",
+            "replace": "\n"
+        },
+        "Remove beginning spaces": {
+            "find": "^\\s",
+            "replace": ""
+        },
+        "Replace new lines with semicolon": {
+            "find": "\\n",
+            "replace": ";"
+        },
+        "Add sender org to list":{
+            "find" : "(.*)@(.*)\t(.*)",
+            "replace": "$1@$2\t$3\t$2"
+        }
+    },
+    "replacerules.rulesets": {
+        "Step 1 - Email Senders Cleanup": {
+            "rules": [
+                "Replace semicolon with newline",
+                "Remove beginning spaces"
+            ]
+        }
+    }
+}
